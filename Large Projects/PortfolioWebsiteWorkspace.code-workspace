@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "tasklist"
+		},
+		{
+			"path": "C:\\Users\\jp171\\Desktop\\pizza_menu"
+		},
+		{
+			"path": "C:\\Users\\jp171\\Desktop\\drill"
+		},
+		{
+			"path": "C:\\Users\\jp171\\Desktop\\number_guessing_game"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pizza_menu",
+		"git.ignoreLimitWarning": true
+	}
+}
