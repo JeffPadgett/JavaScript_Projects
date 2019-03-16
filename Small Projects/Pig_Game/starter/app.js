@@ -28,6 +28,7 @@ function nextPlayer(){
     document.getElementById('current-1').textContent = '0';
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
+    var diceDOM = document.querySelector('.dice');
     diceDOM.style.display = 'none';
 }
 
@@ -55,12 +56,22 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 document.querySelector('.btn-hold').addEventListener('click', function() {
     //add rolled CURRENT score to the players GLOBAL score
     scores[activePlayer] += roundScore;
-
-
     // Update the UI 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-    nextPlayer();
     // Check if player won the game
-
-
+    if (scores[activePlayer] >= 20){
+        document.querySelector('#name-' + activePlayer).textContent = "Winner!!!";
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('winner');
+        document.querySelector('.btn-roll').style.display = 'none';
+        document.querySelector('.btn-hold').style.display = 'none';
+    } else {
+        nextPlayer();
+    }
 })
+
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    
+
+}
