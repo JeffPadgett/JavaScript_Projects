@@ -10,16 +10,8 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer;
+initGame();
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
-
-document.querySelector('.dice').style.display = 'none';
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
 
 function nextPlayer(){
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
@@ -59,7 +51,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     // Update the UI 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
     // Check if player won the game
-    if (scores[activePlayer] >= 20){
+    if (scores[activePlayer] >= 100){
         document.querySelector('#name-' + activePlayer).textContent = "Winner!!!";
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
@@ -70,8 +62,22 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         nextPlayer();
     }
 })
+document.querySelector('.btn-new').addEventListener('click', initGame);
 
-document.querySelector('.btn-roll').addEventListener('click', function() {
-    
+function initGame() {
+    scores = [0,0];
+    activePlayer = 0;
+    roundScore = 0;
+    document.querySelector('.dice').style.display = 'none';
 
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = "Player 1";
+    document.getElementById('name-1').textContent = "Player 2";
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.btn-roll').style.display = 'block';
+    document.querySelector('.btn-hold').style.display = 'block';
 }
