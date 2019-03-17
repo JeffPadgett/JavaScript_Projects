@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, previousRoll, dice;
 initGame();
 
 
@@ -23,10 +23,16 @@ function nextPlayer(){
     var diceDOM = document.querySelector('.dice');
     diceDOM.style.display = 'none';
 }
+function resetGlobalScore(){
+    if (previousRoll === 6 && dice === 6)
+        scores[activePlayer] = 0;
+        document.querySelector('#score-' + activePlayer).textContent = 0;
+        nextPlayer();
+}
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
     // 1. random number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    dice = Math.floor(Math.random() * 6) + 1;
 
     //2. Display the result
     var diceDOM = document.querySelector('.dice');
@@ -34,6 +40,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     diceDOM.src = 'dice-' + dice + '.png';
 
     //3. Update the round score IF the rolled number is NOT a 1
+    resetGlobalScore();
     if (dice !== 1){
         //Add score
         roundScore += dice;
@@ -41,8 +48,10 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     } else {
         //Next Player
         nextPlayer();
-
     }
+
+    previousRoll = dice;
+
 } );
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
@@ -68,6 +77,7 @@ function initGame() {
     scores = [0,0];
     activePlayer = 0;
     roundScore = 0;
+    previousRoll = 0;
     document.querySelector('.dice').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
@@ -78,6 +88,9 @@ function initGame() {
     document.getElementById('name-1').textContent = "Player 2";
     document.querySelector('.player-0-panel').classList.remove('winner');
     document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.btn-roll').style.display = 'block';
     document.querySelector('.btn-hold').style.display = 'block';
 }
