@@ -152,3 +152,36 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+/**********************************************
+*** INPUT FIELD
+**********************************************/
+.input-form {
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    transform: translateX(-50%);
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+#input-label {
+    font-family: Lato;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+    
+}
+#player-input {
+    text-align: center;
+}
+
+input[type=number]
+{
+    text-align: center;
+    border: 2px solid rgb(230, 97, 97);
+    border-radius: 4px;
+    text-align: center;
+}
+

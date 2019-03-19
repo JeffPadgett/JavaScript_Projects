@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, previousRoll, dice;
+var scores, roundScore, activePlayer, previousRoll, dice, scoreInput;
 initGame();
 
 
@@ -24,13 +24,16 @@ function nextPlayer(){
     diceDOM.style.display = 'none';
 }
 function resetGlobalScore(){
-    if (previousRoll === 6 && dice === 6)
+    if (previousRoll === 6 && dice === 6){
         scores[activePlayer] = 0;
         document.querySelector('#score-' + activePlayer).textContent = 0;
+        previousRoll = 0;
         nextPlayer();
+    }
 }
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
+    setScore();
     // 1. random number
     dice = Math.floor(Math.random() * 6) + 1;
 
@@ -60,7 +63,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     // Update the UI 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
     // Check if player won the game
-    if (scores[activePlayer] >= 100){
+    if (scores[activePlayer] >= scoreInput){
         document.querySelector('#name-' + activePlayer).textContent = "Winner!!!";
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
@@ -78,8 +81,9 @@ function initGame() {
     activePlayer = 0;
     roundScore = 0;
     previousRoll = 0;
+    document.getElementById('player-input').style.display = 'block';
+    document.querySelector('.input-form').style.display = 'block';
     document.querySelector('.dice').style.display = 'none';
-
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
@@ -92,5 +96,16 @@ function initGame() {
     document.querySelector('.player-0-panel').classList.add('active');
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.btn-roll').style.display = 'block';
-    document.querySelector('.btn-hold').style.display = 'block';
+    document.querySelector('.btn-hold').style.display = 'block'; 
+}
+
+function setScore() {
+    scoreInput = document.getElementById('player-input').value
+    if (scoreInput){
+        scoreInput = document.getElementById('player-input').value
+    } else {
+        scoreInput = 100;
+        document.getElementById('player-input').style.display = 'none';
+        document.querySelector('.input-form').style.display = 'none';
+    }  
 }
