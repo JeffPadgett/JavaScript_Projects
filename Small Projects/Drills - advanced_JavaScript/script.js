@@ -36,7 +36,7 @@ john.calculateAge();
 //A big difference between primitives and objects, is that variables contianing primitives, actually hold that data, inside of the variable itself, on objects, its very different.
 //veriables assoisated with objects do not actually contain the object, but instead contain a reference in to the place in memory where the object sits or where the object is stored.
 // It just points to the object. 
-
+/*
 var a = 23;
 var b = a;
 a = 46;
@@ -54,6 +54,57 @@ console.log(obj1.age);
 console.log(obj2.age);
 //They are both 30... This is because when we set object 1 should be equal to object 2, we did not create a new object, all that we did was create a new reference that points to the first object.
 
+//FUNCTIONS 
+var age = 27;
+var obj = {
+    name: 'Jonas',
+    city: "Lisbon"
+};
+
+function change (a,b) {
+    a = 30;
+    b.city = "San Francisco";
+}
+
+change (age, obj);
+
+console.log(age);
+console.log(obj);
+*/
+
+/********************Lecture: Passing functions as arguments */
+
+var years = [1986, 1965, 1937, 2005, 1998];
+var ages = [32, 42, 18, 24, 59, 60];
 
 
+
+function arrayCalc(array, fctn) {
+    var tempArray = [];
+    for (var i = 0; i < array.length; i++)
+    {
+        tempArray.push(fctn(array[i]));
+    }
+    return tempArray;
+}
+
+//callback functions are functions that do only one simple task, they are called callback functions because they are functions that we pass into functions that call them later
+function calculateAge(el) {
+    return 2019 - el;
+}
+
+function isFullAge(el){
+    return el >= 18;
+}
+
+function maxHeartRate(el) {
+    if (el >= 18 && el <= 81) {
+        return Math.round(206.9 - (0.67 * el));
+    } else { 
+        return -1;
+    }
+}
+
+var heartRate = arrayCalc(ages,maxHeartRate);
+console.log(heartRate);
 
