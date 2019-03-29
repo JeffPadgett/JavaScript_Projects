@@ -74,6 +74,7 @@ console.log(obj);
 
 /********************Lecture: Passing functions as arguments */
 
+/*
 var years = [1986, 1965, 1937, 2005, 1998];
 var ages = [32, 42, 18, 24, 59, 60];
 
@@ -107,4 +108,73 @@ function maxHeartRate(el) {
 
 var heartRate = arrayCalc(ages,maxHeartRate);
 console.log(heartRate);
+*/
+
+/***************FUNCTIONS RETURNING FUNCTIONS*************************** */
+
+/*
+function interviewQuestion(job) {
+    if (job === 'designer') {
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is?');
+        }  
+    } else if (job ==='teacher') {
+        return function(name){
+            console.log('What subject do you teach ' + name + '?')
+        }
+    } else {
+        return function(name){
+            console.log('Hello ' + name + ' what do you do?');
+        }
+    }
+}
+
+var designerQuestion = interviewQuestion('designer');
+var teacherQuestion = interviewQuestion('teacher');
+
+teacherQuestion('John');
+designerQuestion('Peggy');
+designerQuestion('Mark');
+teacherQuestion('Sally');
+
+interviewQuestion('designer')('Paparao');
+*/
+
+/*********************IIFE********************************/
+//Imediately invoked function expressions
+//Used to maintain data privacy. 
+//This is just for data privacy
+//This works because the javascript parser knows that whats inside of prenthenses can not be a statement
+
+/*
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+(function (goodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(5); //we pass the good luck paramater here 
+*/
+
+
+/***** Lecture: Closures */
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement.';
+    return function (yearOfBirth) {
+        var age = 2019 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+
+
 
