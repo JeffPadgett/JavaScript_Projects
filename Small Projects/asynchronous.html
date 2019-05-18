@@ -29,46 +29,65 @@
 // }
 // getRecipe();
 
-const getIDs = new Promise ((resolve, reject) => {
-    setTimeout(() => {
-        resolve([523,883,432,974]);
-    }, 1500); 
-});
+// const getIDs = new Promise ((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve([523,883,432,974]);
+//     }, 1500); 
+// });
 
-const getRecipe = recID => {
-    return new Promise((resolve, reject) => {
-        setTimeout(ID => {
-            const recipie = {title: 'Fresh tomato pasta', publisher: 'Jonas'};
-            console.log(`${ID}: ${recipie.title}`);
-        }, 1500, recID);
-    });
-};
+// const getRecipe = recID => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(ID => {
+//             const recipie = {title: 'Fresh tomato pasta', publisher: 'Jonas'};
+//             console.log(`${ID}: ${recipie.title}`);
+//         }, 1500, recID);
+//     });
+// };
 
-const getRelated = publisher => {
-    return new Promise((resolve, reject) => {
-        setTimeout(pub => {
-            const recipe = {title: 'Italian Pizza', publisher: 'Jonas'};
-            resolve(`${pub}: ${recipe}`);
-        }, 1500, publisher)
-    });
-};
+// const getRelated = publisher => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(pub => {
+//             const recipe = {title: 'Italian Pizza', publisher: 'Jonas'};
+//             resolve(`${pub}: ${recipe}`);
+//         }, 1500, publisher)
+//     });
+// };
 
 //Will always have as an argument the result of the successfull promise.
-getIDs
-.then(IDs => {
-    console.log(IDs);
-    return getRecipe(IDs[2])
+// getIDs
+// .then(IDs => {
+//     console.log(IDs);
+//     return getRecipe(IDs[2])
+// })
+// .then(recipe => {
+//     console.log(recipe);
+//     return getRelated('Jonas');
+// }) 
+// .then(recipe => {
+//     console.log(recipe);
+// })
+// .catch(error => {
+//     console.log('error!');
+// });
+
+// async function getRecipesAW() {
+//     const IDs = await getIDs;
+//     console.log(IDs);
+//     const recipe = await getRecipe(IDs[2]);
+//     console.log(recipe);
+//     const related = await getRelated('Jonas Schmedtmann');
+//     console.log(related);
+
+//     return recipe;
+// }
+// getRecipesAW().then(result => console.log(`${result} is the best ever!`));
+
+
+let cool = fetch('https://crossorigin.me/https://www.metaweather.com/api/location/2487956/')
+.then(result => {
+    console.log(result);
 })
-.then(recipe => {
-    console.log(recipe);
-    return getRelated('Jonas');
-}) 
-.then(recipe => {
-    console.log(recipe);
-})
-.catch(error => {
-    console.log('error!');
-});
+.catch(error => console.log(error));
 
 
     </script>
